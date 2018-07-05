@@ -1,0 +1,34 @@
+.TopBar {
+  height: 10%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #28ABCB;
+  color: #FFF;
+}
+
+.logo-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.logo {
+  /* align-self: center; */
+}
+
+.title {
+  font-family: 'HelloTropical';
+  font-size: 3em;
+}
+
+.social-media {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,16 @@
+.Footer {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  background-color: #28ABCB;
+  color: #FFF;
+}
+
+.footer-title {
+  font-family: 'HelloTropical';
+  font-size: 2em;
+}
