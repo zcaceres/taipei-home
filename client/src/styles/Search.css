@@ -1,0 +1,13 @@
+.Search {
+  font-family: 'Montserrat';
+  font-size: 26px;
+  line-height: 1.5;
+}
+
+.search-text {
+  max-width: 70vw;
+}
+
+.dropdown {
+  min-width: 150px;
+}

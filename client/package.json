@@ -4,7 +4,8 @@
   "private": true,
   "dependencies": {
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "react-select": "^1.2.1"
   },
   "devDependencies": {
     "react-scripts": "1.1.4"

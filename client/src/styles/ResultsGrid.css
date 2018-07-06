@@ -1,11 +1,29 @@
-.results-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+.ResultsGrid {
+  overflow: visible;
+  min-height: 70vh;
 }
 
-.result-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.Result {
+  font-family: 'Montserrat';
+  font-weight: 800;
+  color: #fff;
+  flex: 1;
+  background-color: #868686;
+  border-radius: 10px;
+  border: solid 1px #696767;
+  margin: 2%;
+  min-height: 158px;
+  flex-basis: 254px;
+}
+
+.Result .site {
+  font-size: 13px;
+}
+
+.Result .neighborhood {
+  font-size: 25px;
+}
+
+.Result .price {
+  font-size: 13px;
 }

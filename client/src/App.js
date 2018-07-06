@@ -11,7 +11,7 @@ import './hellotropical-webfont.woff2';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App flex flex-column flex-wrap">
         <TopBar />
         <Body />
         <Footer />

@@ -10,40 +10,5 @@
 }
 
 .App {
-  display: flex;
-  flex-direction: column;
-}
 
-.column-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.width-50 {
-  width: 50%;
-}
-
-.width-100 {
-  width: 100%;
-}
-
-.row-container {
-  display: flex;
-  flex-direction: row;
-}
-
-.justify-space-between {
-  justify-content: space-between;
-}
-
-.justify-space-evenly {
-  justify-content: space-evenly;
-}
-
-.justify-space-around {
-  justify-content: space-around;
-}
-
-.align-items-center {
-  align-items: center;
 }

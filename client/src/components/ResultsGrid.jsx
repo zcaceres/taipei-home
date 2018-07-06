@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Result from './Result'
 import '../styles/ResultsGrid.css';
 
 export default class ResultsGrid extends Component {
@@ -12,43 +13,38 @@ export default class ResultsGrid extends Component {
   }
 
   render() {
-    return (<div className="column-container">
-      <div className="row-container justify-space-evenly">
-        <div className="result">One</div>
-        <div className="result">Two</div>
-        <div className="result">Three</div>
-        <div className="result">Four</div>
-      </div>
-      <div className="row-container justify-space-evenly">
-        <div className="result">One</div>
-        <div className="result">Two</div>
-        <div className="result">Three</div>
-        <div className="result">Four</div>
-      </div>
-      <div className="row-container justify-space-evenly">
-        <div className="result">One</div>
-        <div className="result">Two</div>
-        <div className="result">Three</div>
-        <div className="result">Four</div>
-      </div>
-      <div className="row-container justify-space-evenly">
-        <div className="result">One</div>
-        <div className="result">Two</div>
-        <div className="result">Three</div>
-        <div className="result">Four</div>
-      </div>
-      <div className="row-container justify-space-evenly">
-        <div className="result">One</div>
-        <div className="result">Two</div>
-        <div className="result">Three</div>
-        <div className="result">Four</div>
-      </div>
-      <div className="row-container justify-space-evenly">
-        <div className="result">One</div>
-        <div className="result">Two</div>
-        <div className="result">Three</div>
-        <div className="result">Four</div>
-      </div>
+    return (<div className="ResultsGrid w-100 mt4 flex flex-wrap">
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
+        <Result />
     </div>);
   }
 }

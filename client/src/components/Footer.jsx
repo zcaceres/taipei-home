@@ -3,30 +3,22 @@ import PropTypes from 'prop-types';
 import '../styles/Footer.css';
 
 export default class Footer extends Component {
-  static propTypes = {
-
-  }
-
-  state = {
-
-  }
-
   render() {
-    return <div className="Footer">
-      <div className="row-container width-50 justify-space-evenly align-items-center">
-        <div className="column-container">
+    return <div className="Footer flex justify-around flex-wrap">
+      <div className="flex w-50 justify-evenly justify-around items-center flex-wrap">
+        <div className="flex flex-column pa2">
           <div className="footer-title">Taiwan Home</div>
           <div className="footer-copyright">Copyright 2018</div>
         </div>
-        <div className="footer-about-us">About Us</div>
-        <div className="footer-social-media">Social Media</div>
+        <div className="footer-about-us pa2">About Us</div>
+        <div className="footer-social-media pa2">Social Media</div>
       </div>
-      <div className="row-container width-50 justify-space-evenly align-items-center">
-        <div className="column-container">
+      <div className="flex w-50 justify-evenly justify-around items-center flex-wrap">
+        <div className="flex flex-column pa2">
           <div className="footer-subscribe">Subscribe</div>
           <input />
         </div>
-        <div className="column-container">
+        <div className="flex flex-column pa2">
           <div>Taipei, Taiwan</div>
           <div>email@email.com</div>
         </div>

@@ -12,15 +12,13 @@ export default class TopBar extends Component {
   }
 
   render() {
-    return <div className="TopBar">
-      <div className="logo-title-container">
+    return <div className="TopBar w-100 flex items-center ph3 justify-between">
+      <div className="logo-title-container content-center">
         <div className="logo"/>
         <div className="title">Taiwan Home</div>
       </div>
-      <div className="social-media">
-        <div>one</div>
-        <div>two</div>
-        <div>three</div>
+      <div className="flex justify-between">
+        {/* TODO: SOCIAL MEDIA */}
       </div>
     </div>;
   }
