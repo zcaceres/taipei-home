@@ -5,46 +5,16 @@ import '../styles/ResultsGrid.css';
 
 export default class ResultsGrid extends Component {
   static propTypes = {
-
+    results: PropTypes.array
   }
 
-  state = {
-
+  static defaultProps = {
+    results: []
   }
 
   render() {
     return (<div className="ResultsGrid w-100 mt4 flex flex-wrap">
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
+      { this.props.results.length && this.props.results.map(result => <Result />) }
     </div>);
   }
 }
