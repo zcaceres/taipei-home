@@ -1,8 +1,8 @@
-// https://exec.clay.run/zachcaceres/taiwan-home
-
+// require any npm package
 // initialize db connections here
 const Clay = require('clay-client')
 const axios = require('axios')
+const lodash = require('lodash')
 
 /* @param {object} event.vars - JSON POST body or GET query parameters
  * @param {object} event.headers - HTTP Headers
@@ -23,23 +23,26 @@ async function search591(queryString) {
 }
 
 exports.handler = async function(event, done, fail) {
-  const  { near, aptType, budget, lease, rooms } = event.vars
+  const { near, price, rooms, roomType, lease } = event.vars
   console.log('vars', event.vars)
-  const results = await search591(formatQueryString({ near, aptType, budget, lease, rooms }))
+  const raw = await search591(formatQueryString({ near, roomType, price, lease, rooms }))
+  if (!raw) return fail('No response for query', 400)
+  const { data } = raw.data
+  if (!data) return fail('No data in response', 400)
   done({
-    results
+    results: data
   });
 }
 
 /** Formatting  */
 function formatQueryString(params) {
-  const room = params.aptType && 'kind=' + getRoomQuery(params.aptType)
+  const room = params.roomType && 'kind=' + getRoomQuery(params.roomType)
   const leaseType = params.lease && 'other='  + getLeaseType(params.lease)
-  const numOfRooms = (params.aptType === 'whole-apartment' && params.rooms) && 'pattern=' + getRoomNumber(params.rooms)
+  const numOfRooms = (params.roomType === 'whole-apartment' && params.rooms) && 'pattern=' + getRoomNumber(params.rooms)
   // ^ can only specify number of rooms if searching for a whole apartment... obviously!
   const near = getNear(params.near)
-  const budget = params.budget && 'rentprice=' + getBudget(params.budget)
-  return [room, budget, leaseType, numOfRooms, near].filter(el => el).join('&')
+  const price = params.price && 'rentprice=' + getBudget(params.price)
+  return [room, price, leaseType, numOfRooms, near].filter(el => el).join('&')
 }
 
 function getRoomNumber(selection) {

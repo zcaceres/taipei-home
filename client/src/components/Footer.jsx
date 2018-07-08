@@ -13,16 +13,6 @@ export default class Footer extends Component {
         <div className="footer-social-media pa2">Facebook</div>
         {/* <div className="footer-about-us pa2">About Us</div> */}
       </div>
-      {/* <div className="flex w-50 justify-evenly justify-around items-center flex-wrap">
-        <div className="flex flex-column pa2">
-          <div className="footer-subscribe">Subscribe</div>
-          <input />
-        </div>
-        <div className="flex flex-column pa2">
-          <div>Taipei, Taiwan</div>
-          <div>email@email.com</div>
-        </div>
-      </div> */}
     </div>;
   }
 }

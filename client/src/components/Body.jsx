@@ -7,14 +7,22 @@ import '../styles/Body.css';
 
 export default class Body extends Component {
   state = {
-    results: []
+    results: [],
+    lastPage: null
   }
 
-  search = ({ near, aptType, budget, lease, rooms }) => {
-    axios.post('https://exec.clay.run/zachcaceres/taiwan-home', {})
-      .then(res => this.setState({ results: res.data.results.data.data }))
+  search = ({ near, nearType, roomType, price, lease = null, rooms = null }) => {
+    axios.post('https://exec.clay.run/zachcaceres/taiwan-home', {
+      near,
+      nearType,
+      roomType,
+      price
+    })
+      .then(res => {
+        const { data } = res;
+        this.setState({ results: data.results, lastPage: data.lastPage })
+      })
       .catch(err => console.error)
-
   }
 
   render() {
