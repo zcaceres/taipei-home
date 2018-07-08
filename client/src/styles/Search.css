@@ -5,10 +5,12 @@
 }
 
 .search-text {
+  line-height: 2.0;
   max-width: 70vw;
 }
 
 .dropdown {
+  align-self: center;
   font-size: 12px;
   min-width: 180px;
 }
