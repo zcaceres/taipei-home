@@ -15,7 +15,7 @@ export default class TopBar extends Component {
     return <div className="TopBar w-100 flex items-center ph3 justify-between">
       <div className="logo-title-container content-center">
         <div className="logo"/>
-        <div className="title">Taiwan Home</div>
+        <div className="title">Taipei Home</div>
       </div>
       <div className="flex justify-between">
         {/* TODO: SOCIAL MEDIA */}

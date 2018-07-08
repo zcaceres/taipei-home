@@ -2,11 +2,15 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
 import Select from 'react-select'
 import '../styles/Search.css'
-import 'react-select/dist/react-select.css'
 import ROOM_TYPES from '../options/roomTypes'
 import NEAR from '../options/near'
 import PRICES from '../options/prices'
-
+const NEAR_SCHOOL = NEAR.schools
+const NEAR_STATION = NEAR.stations
+const NEAR_TYPES = [
+  { value: 'station', label: 'subway station', searchField: 'nearType' },
+  { value: 'school', label: 'school', searchField: 'nearType'}
+]
 
 export default class Search extends Component {
   static propTypes = {
@@ -16,6 +20,7 @@ export default class Search extends Component {
   state = {
     roomType: null,
     near: null,
+    nearType: null,
     price: null
   }
 
@@ -28,17 +33,19 @@ export default class Search extends Component {
   search = () => {
     const { roomType, near, price } = this.state;
     if (roomType && near && price) {
-      this.props.search({});
+      console.log('SEARCHING')
+      // this.props.search({});
     }
   }
 
   render() {
-    const { roomType, near, price } = this.state;
+    const { roomType, near, nearType, price } = this.state;
     return (<div className="Search tl mh5">
       <div className="search-text flex flex-wrap">
-        <span>Find me a </span><Select className="dropdown mh3" name="roomType" value={roomType} onChange={this.handleChange} options={ROOM_TYPES} />
-        {roomType && <Fragment><span> in Taipei near </span><Select className="dropdown mh3" name="near" value={near} onChange={this.handleChange} options={NEAR} /></Fragment>}
-        {near && <Fragment><span> with a price of </span><Select className="dropdown mh3" name="price" value={price} onChange={this.handleChange} options={PRICES} /></Fragment>}
+        <span className="mh3">Find me a </span><Select autofocus className="dropdown" name="roomType" onChange={this.handleChange} options={ROOM_TYPES} />
+        {roomType && <Fragment><span className="mh3"> in Taipei near the </span><Select className="dropdown" name="nearType" onChange={this.handleChange} options={NEAR_TYPES} /></Fragment>}
+        {nearType && <Fragment><span className="mh3"> named </span><Select className="dropdown" name="near" onChange={this.handleChange} options={nearType === 'station' ? NEAR_STATION : NEAR_SCHOOL } /></Fragment> }
+        {near && <Fragment><span className="mh3"> with a price of </span><Select className="dropdown" name="price" onChange={this.handleChange} options={PRICES} />.</Fragment>}
       </div>
     </div>)
   }

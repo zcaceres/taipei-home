@@ -1,0 +1,23 @@
+{
+  "name": "taiwan-home",
+  "version": "1.0.0",
+  "description": "``` near: {   for subway line ...     type: 'line',     value: ['red', 'blue', 'yellow', 'green', 'brown']",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zcaceres/taiwan-home.git"
+  },
+  "author": "Zachary Caceres",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/zcaceres/taiwan-home/issues"
+  },
+  "homepage": "https://github.com/zcaceres/taiwan-home#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lodash": "^4.17.10"
+  }
+}

@@ -874,14 +874,124 @@ const BLUE_LINE = [
   }
 ]
 
-const STATIONS = RED_LINE
-  .concat(BLUE_LINE)
-  .concat(BROWN_LINE)
-  .concat(GREEN_LINE)
-  .concat(YELLOW_LINE)
+const STATIONS = [{ label: 'Red Line', options: RED_LINE }]
+  .concat({ label: 'Blue Line', options: BLUE_LINE })
+  .concat({ label: 'Brown Line', options: BROWN_LINE })
+  .concat({ label: 'Green Line', options: GREEN_LINE })
+  .concat({ label: 'Yellow Line', options: YELLOW_LINE })
 
-export default [
-  ...LINES,
-  ...STATIONS,
-  // ...SCHOOLS
+const SCHOOLS = [
+  {
+    value: 'national-taipei-university-of-business',
+    label: 'National Taipei University of Business',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'tatung-university',
+    label: 'Tatung University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'shih-chien-university',
+    label: 'Shih Chien University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'national-taipei-university-of-technology',
+    label: 'National Taipei University of Technology',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'national-taiwan-university',
+    label: 'National Taiwan University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'national-taiwan-university-of-science-and-technology',
+    label: 'National Taiwan University of Science and Technology',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'national-taiwan-normal-university',
+    label: 'National Taiwan Normal University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'taipei-medical-university',
+    label: 'Taipei Medical University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'chinese-culture-university',
+    label: 'Chinese Culture University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'soochow-university',
+    label: 'Soochow University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'ming-chuan-university',
+    label: 'Ming Chuan University',
+    type: 'school',
+    searchFied: 'near'
+  },
+  {
+    value: 'taipei-national-university-of-the-arts',
+    label: 'Taipei National University of the Arts',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'national-yang-ming-university',
+    label: 'National Yang Ming University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'shih-hsin-university',
+    label: 'Shih Hsin University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'national-chengchi-university',
+    label: 'National Chengchi University',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'china-university-of-technology',
+    label: 'China University of Technology',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'national-taipei-university-of-education',
+    label: 'National Taipei University of Education',
+    type: 'school',
+    searchField: 'near'
+  },
+  {
+    value: 'national-taiwan-college-of-performing-arts',
+    label: 'National Taiwan College of Performing Arts',
+    type: 'school',
+    searchField: 'near'
+  }
 ]
+
+export default {
+  stations: STATIONS,
+  schools: SCHOOLS
+}
