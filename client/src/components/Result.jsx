@@ -10,10 +10,19 @@ export default class Result extends Component {
 
   }
 
+  getStyle(img) {
+    return ({
+      'background-image': `url(${img})`,
+      'background-position': 'center',
+      'background-size': 'cover'
+    })
+  }
+
   render() {
-    return <div className="Result flex flex-column pa2 justify-between">
-      <div className="bedrooms">2 bedrooms</div>
-      <div className="price self-center">$450/mo</div>
+    const { bedrooms, price, url, img } = this.props;
+    return <div onClick={() => window.open(url)} style={img && this.getStyle(img)} className="Result flex flex-column pa2 justify-between">
+      <div className="bedrooms">{bedrooms > 0 ? `${bedrooms} bedrooms` : ''}</div>
+      <div className="price self-center">{`${price}/mo`}</div>
       <div className="self-end" />
     </div>
   }

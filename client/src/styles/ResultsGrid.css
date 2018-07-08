@@ -14,6 +14,8 @@
   margin: 2%;
   min-height: 158px;
   flex-basis: 254px;
+  cursor: pointer;
+  letter-spacing: 1px;
 }
 
 .Result .site {

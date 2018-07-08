@@ -14,7 +14,14 @@ export default class ResultsGrid extends Component {
 
   render() {
     return (<div className="ResultsGrid w-100 mt4 flex flex-wrap">
-      { Boolean(this.props.results.length) && this.props.results.map(result => <Result />) }
+      { Boolean(this.props.results.length) && this.props.results.map(result => (
+        <Result
+          price={result.price}
+          bedrooms={result.bedrooms}
+          url={result.url}
+          img={result.img}
+        />))
+      }
     </div>);
   }
 }

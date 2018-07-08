@@ -30,7 +30,7 @@ export default class Body extends Component {
     return (<div className="Body w-100 flex flex-column pt4 content-center">
       <div className="flex flex-column tc flex-wrap items-center pb1">
         <div className="body-header mb3">
-          🏠 <span className="callout">Search Mandarin apartment listings</span> without speaking Mandarin
+          🏠 <span className="callout">Find the best apartments in Taipei</span> (without speaking Mandarin)
         </div>
         <Search search={this.search}/>
       </div>
