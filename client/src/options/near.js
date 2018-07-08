@@ -1,3 +1,7 @@
+function sortByLabel(arr) {
+  return arr.sort(compare).concat()
+}
+
 const LINES = [
   {
     type: 'line',
@@ -94,7 +98,7 @@ const RED_LINE = [
   },
   {
     value: 'shipai',
-    label: 'Qilian',
+    label: 'Shipai',
     type: 'station',
     searchField: 'near'
   },
@@ -130,7 +134,7 @@ const RED_LINE = [
   },
   {
     value: 'minquan-w-rd',
-    label: 'Minquan W. Rd',
+    label: 'Minquan W. Rd (Red)',
     type: 'station',
     searchField: 'near'
   },
@@ -142,13 +146,13 @@ const RED_LINE = [
   },
   {
     value: 'zhongshan',
-    label: 'Zhongshan',
+    label: 'Zhongshan (Red)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'taipei-main-st',
-    label: 'Taipei Main St.',
+    label: 'Taipei Main St. (Red)',
     type: 'station',
     searchField: 'near'
   },
@@ -160,13 +164,13 @@ const RED_LINE = [
   },
   {
     value: 'chiang-kai-shek-memorial-hall',
-    label: 'Chiang Kai Shek Mem.',
+    label: 'Chiang Kai Shek Memorial (Red)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'dongmen',
-    label: 'Dongmen',
+    label: 'Dongmen (Red)',
     type: 'station',
     searchField: 'near'
   },
@@ -178,7 +182,7 @@ const RED_LINE = [
   },
   {
     value: 'daan',
-    label: 'Da\'an',
+    label: 'Da\'an (Red)',
     type: 'station',
     searchField: 'near'
   },
@@ -331,19 +335,19 @@ const GREEN_LINE = [
   },
   {
     value: 'nanjing-fuxing',
-    label: 'Nanjing Fuxing',
+    label: 'Nanjing Fuxing (Green)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'songjiang-nanjing',
-    label: 'Songjiang Nanjing',
+    label: 'Songjiang Nanjing (Green)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'zhongshan',
-    label: 'Zhongshan',
+    label: 'Zhongshan (Green)',
     type: 'station',
     searchField: 'near'
   },
@@ -355,7 +359,7 @@ const GREEN_LINE = [
   },
   {
     value: 'ximen',
-    label: 'Ximen',
+    label: 'Ximen (Green)',
     type: 'station',
     searchField: 'near'
   },
@@ -367,13 +371,13 @@ const GREEN_LINE = [
   },
   {
     value: 'chiang-kai-shek-memorial-hall',
-    label: 'Chiang Kai Shek Memorial',
+    label: 'Chiang Kai Shek Memorial (Green)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'gutin',
-    label: 'Gutin',
+    label: 'Gutin (Green)',
     type: 'station',
     searchField: 'near'
   },
@@ -436,19 +440,19 @@ const GREEN_LINE = [
 const YELLOW_LINE = [
   {
     value: 'dongmen',
-    label: 'Dongmen',
+    label: 'Dongmen (Yellow)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'zhongxiao-xinsheng',
-    label: 'Zhongxiao Xinsheng',
+    label: 'Zhongxiao Xinsheng (Yellow)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'songjiang-nanjing',
-    label: 'Songjiang Nanjing',
+    label: 'Songjiang Nanjing (Yellow)',
     type: 'station',
     searchField: 'near'
   },
@@ -466,7 +470,7 @@ const YELLOW_LINE = [
   },
   {
     value: 'minquan-w-rd',
-    label: 'Minquan W. Road',
+    label: 'Minquan W. Road (Yellow)',
     type: 'station',
     searchField: 'near'
   },
@@ -562,7 +566,7 @@ const YELLOW_LINE = [
   },
   {
     value: 'gutin',
-    label: 'Gutin',
+    label: 'Gutin (Yellow)',
     type: 'station',
     searchField: 'near'
   },
@@ -595,7 +599,7 @@ const YELLOW_LINE = [
 const BROWN_LINE = [
   {
     value: 'nangang-exhibition-center',
-    label: 'Nangang Exhibition Center',
+    label: 'Nangang Exhibition Center (Brown)',
     type: 'station',
     searchField: 'near'
   },
@@ -673,19 +677,19 @@ const BROWN_LINE = [
   },
   {
     value: 'nanjing-fuxing',
-    label: 'Nanjing Fuxing',
+    label: 'Nanjing Fuxing (Brown)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'zhongxiao-fuxing',
-    label: 'Zhongxiao Fuxing',
+    label: 'Zhongxiao Fuxing (Brown)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'daan',
-    label: 'Da\'an',
+    label: 'Da\'an (Brown)',
     type: 'station',
     searchField: 'near'
   },
@@ -802,13 +806,13 @@ const BLUE_LINE = [
   },
   {
     value: 'ximen',
-    label: 'Ximen',
+    label: 'Ximen (Blue)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'taipei-main-st',
-    label: 'Taipei Main St.',
+    label: 'Taipei Main St. (Blue)',
     type: 'station',
     searchField: 'near'
   },
@@ -820,13 +824,13 @@ const BLUE_LINE = [
   },
   {
     value: 'zhongxiao-xinsheng',
-    label: 'Zhongxiao Xinsheng',
+    label: 'Zhongxiao Xinsheng (Blue)',
     type: 'station',
     searchField: 'near'
   },
   {
     value: 'zhongxiao-fuxing',
-    label: 'Zhongxiao Fuxing',
+    label: 'Zhongxiao Fuxing (Blue)',
     type: 'station',
     searchField: 'near'
   },
@@ -868,17 +872,19 @@ const BLUE_LINE = [
   },
   {
     value: 'nangang-exhibition-center',
-    label: 'Nangang Exhibition Center',
+    label: 'Nangang Exhibition Center (Blue)',
     type: 'station',
     searchField: 'near'
   }
 ]
 
-const STATIONS = [{ label: 'Red Line', options: RED_LINE }]
-  .concat({ label: 'Blue Line', options: BLUE_LINE })
-  .concat({ label: 'Brown Line', options: BROWN_LINE })
-  .concat({ label: 'Green Line', options: GREEN_LINE })
-  .concat({ label: 'Yellow Line', options: YELLOW_LINE })
+const STATIONS = sortByLabel([
+  ...RED_LINE,
+  ...BLUE_LINE,
+  ...BROWN_LINE,
+  ...GREEN_LINE,
+  ...YELLOW_LINE
+])
 
 const SCHOOLS = [
   {
@@ -991,7 +997,15 @@ const SCHOOLS = [
   }
 ]
 
+function compare(a,b) {
+  if (a.label < b.label)
+    return -1;
+  if (a.label > b.label)
+    return 1;
+  return 0;
+}
+
 export default {
   stations: STATIONS,
-  schools: SCHOOLS
+  schools: sortByLabel(SCHOOLS)
 }

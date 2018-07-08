@@ -1,4 +1,5 @@
 export default [
+  { value: 'any', label: 'any price', searchField: 'price' },
   { value: '0-5', label: 'less than $175', searchField: 'price' },
   { value: '5-10', label: '$175 – $340', searchField: 'price' },
   { value: '10-20', label: '$340 – $670', searchField: 'price' },
