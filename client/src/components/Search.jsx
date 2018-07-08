@@ -22,16 +22,23 @@ export default class Search extends Component {
   }
 
   handleChange = (selectedOption) => {
+    console.log('hi', selectedOption)
     if (!selectedOption) return
     const { searchField } = selectedOption
+    if (selectedOption.value === 'anywhere') {
+      return this.setState({ [searchField]: selectedOption.value, near: null }, this.search)
+    }
     this.setState({ [searchField]: selectedOption.value }, this.search);
   }
 
   search = () => {
-    const { roomType, near, price } = this.state;
-    if (roomType && near && price) {
-      console.log('SEARCHING')
-      this.props.search({});
+    const { roomType, near, nearType, price } = this.state;
+    if (roomType && nearType === 'anywhere' && price) {
+      console.log('SEARCHING anywhere', this.state)
+      // return this.props.search({});
+    } else if (roomType && near && price) {
+      console.log('SEARCHING', this.state)
+      // return this.props.search({});
     }
   }
 
