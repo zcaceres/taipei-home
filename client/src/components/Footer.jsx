@@ -7,7 +7,7 @@ export default class Footer extends Component {
     return <div className="Footer flex justify-around flex-wrap">
       <div className="flex w-50 justify-evenly justify-around items-center flex-wrap">
         <div className="flex flex-column pa2">
-          <div className="footer-title">Taiwan Home</div>
+          <div className="footer-title">Taipei Home</div>
           <div className="footer-copyright">Copyright 2018</div>
         </div>
         <div className="footer-about-us pa2">About Us</div>

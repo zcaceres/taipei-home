@@ -1,4 +1,4 @@
-# Taiwan Home
+# Taipei Home
 ## Apartment Hunt Like a Local ... without speaking Mandarin
 
 ```

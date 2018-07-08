@@ -12,9 +12,9 @@ export default class Result extends Component {
 
   render() {
     return <div className="Result flex flex-column pa2 justify-between">
-      <div className="site">591.tw.com</div>
-      <div className="neighborhood self-center">Neighborhood</div>
-      <div className="price self-end">$450</div>
+      <div className="bedrooms">2 bedrooms</div>
+      <div className="price self-center">$450/mo</div>
+      <div className="self-end" />
     </div>
   }
 }
