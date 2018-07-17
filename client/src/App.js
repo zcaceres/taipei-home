@@ -8,7 +8,7 @@ import './hellotropical-webfont.ttf';
 import './hellotropical-webfont.woff';
 import './hellotropical-webfont.woff2';
 
-class App extends Component {
+class App extends Component {  
   render() {
     return (
       <div className="App flex flex-column flex-wrap">

@@ -1,7 +1,4 @@
-.ResultsGrid {
-  overflow: visible;
-  min-height: 40vh;
-}
+.ResultsGrid {}
 
 .Result {
   font-family: 'Montserrat';
