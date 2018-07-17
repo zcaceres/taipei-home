@@ -8,33 +8,50 @@ import '../styles/Body.css';
 export default class Body extends Component {
   state = {
     results: [],
-    lastPage: null
+    nextPage: null
   }
 
-  search = ({ near, nearType, roomType, price, lease = null, rooms = null }) => {
+  componentDidMount() {
+    window.addEventListener('scroll', this.listenForBottom)
+  }
+
+  componentDidUnmount() {
+    window.removeEventListener('scroll', this.listenForBottom)
+  }
+
+  listenForBottom() {
+    if (window.scrollY + window.innerHeight === document.body.scrollHeight) {
+      console.log('fetch more options now!')
+    }
+  }
+
+  search = ({ near, nearType, roomType, price, lease = null, rooms = null, pageNum = null }) => {
+    console.log('NEXT PAGE', this.state.nextPage)
     axios.post('https://exec.clay.run/zachcaceres/taiwan-home', {
       near,
       nearType,
       roomType,
-      price
+      price,
+      pageNum
     })
       .then(res => {
         const { data } = res;
-        this.setState({ results: data.results, lastPage: data.lastPage })
+        this.setState({ results: data.results, nextPage: this.state.nextPage ? this.state.nextPage + 1 : 1 })
       })
       .catch(err => console.error)
   }
 
   render() {
-    console.log(this.props.results)
-    return (<div className="Body w-100 flex flex-column pt4 content-center">
-      <div className="flex flex-column tc flex-wrap items-center pb1">
-        <div className="body-header mb3">
-          🏠 <span className="callout">Find the best apartments in Taipei</span> (without speaking Mandarin)
+    return (
+      <div className="Body w-100 flex flex-column pt4 content-center">
+        <div className="flex flex-column tc flex-wrap items-center pb1">
+          <div className="body-header mb3">
+            🏠 <span className="callout">Find the best apartments in Taipei</span> (without speaking Mandarin)
+          </div>
+          <Search search={this.search}/>
         </div>
-        <Search search={this.search}/>
+        <ResultsGrid results={this.state.results}/>
       </div>
-      <ResultsGrid results={this.state.results}/>
-    </div>)
+    )
   }
 }

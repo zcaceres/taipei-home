@@ -3,35 +3,87 @@
 const Clay = require('clay-client')
 const axios = require('axios')
 const lodash = require('lodash')
+const { JSDOM } = require('jsdom');
 
-/* @param {object} event.vars - JSON POST body or GET query parameters
- * @param {object} event.headers - HTTP Headers
- * @param {object} process.env - private variables
- *
- * Return a JSON serializable object or a string.
- * @callback done(result, [httpCode]) - returns HTTP 200 or httpCode
- * @callback fail(error, [httpCode]) - returns HTTP 400 or httpCode
- */
+// SCRAPE
+function jsdom(responseBody) {
+  return new JSDOM(responseBody);
+};
+
+function nodeListToArray(nodeList) {
+  return [].slice.call(nodeList);
+}
+
+function bodyData(body) {
+  try {
+    const bodyDOM = jsdom(body)
+    const imageMeta = bodyDOM.window.document.head.querySelector('meta[property="og:image"]')
+    return imageMeta ? imageMeta.content.replace('.water3', '') : ''
+  } catch (e) {
+    console.error(e)
+    return null
+  }
+};
 
 const TAIPEI = 'region=1'
 async function search591(queryString) {
   // SEARCH TYPE HERE IF DOING NEAR A SUBWAY
   const searchQuery = `https://rent.591.com.tw/home/search/rsList?is_new_list=1&${TAIPEI}&${queryString}`
-  console.log('Querying', searchQuery)
   const response = await axios.get(searchQuery)
   return response.data
 }
 
 exports.handler = async function(event, done, fail) {
-  const { near, price, rooms, roomType, lease } = event.vars
+  const { near, price, rooms, roomType, lease, pageNum } = event.vars
   console.log('vars', event.vars)
-  const raw = await search591(formatQueryString({ near, roomType, price, lease, rooms }))
+  const raw = await search591(formatQueryString({ near, roomType, price, lease, rooms, pageNum }))
   if (!raw) return fail('No response for query', 400)
   const { data } = raw.data
   if (!data) return fail('No data in response', 400)
+  const enrichedData = await getImages(data)
   done({
-    results: data
+    results: mapToResults(enrichedData)
   });
+}
+
+async function getImages(data) {
+  const requests = data.map(result => {
+    return axios.get(`https://rent.591.com.tw/rent-detail-${result.id}.html`)
+      .then(response => {
+        return {
+          ...result,
+          img: bodyData(response.data)
+        }
+      })
+      .catch(console.error)
+  })
+  return Promise.all(requests)
+}
+
+const mapToResults = (rawResults) => {
+  return rawResults.map(result => ({
+    bedrooms: formatRooms(result.room),
+    price: parsePrice(result.price),
+    url: `https://rent.591.com.tw/rent-detail-${result.id}.html`,
+    img: result.img
+  }))
+}
+
+// Occasionally 591 has 99 as the room number. This is crazy
+const formatRooms = (rooms) => {
+  if (rooms === 99) return 0
+  return rooms
+}
+
+const parsePrice = (price) => {
+  try {
+    const num = Number(price.replace(',', ''))
+    const dollars = num / 30
+    return dollars.toFixed(2)
+  } catch (e) {
+    console.error(e)
+    return 'Price unknown'
+  }
 }
 
 /** Formatting  */
@@ -42,12 +94,17 @@ function formatQueryString(params) {
   // ^ can only specify number of rooms if searching for a whole apartment... obviously!
   const near = getNear(params.near)
   const price = params.price && 'rentprice=' + getBudget(params.price)
+  // TODO: const pageNum = params.pageNum && 'firstRow=' + getPageNum(params.pageNum)
   return [room, price, leaseType, numOfRooms, near].filter(el => el).join('&')
 }
 
 function getRoomNumber(selection) {
   return selection
   // ^ 591 currently just uses 0 - 5 to indicate the number of rooms so we can re-use their params
+}
+
+function getPageNum(pageNum) {
+  return Number(pageNum) * 30
 }
 
 function getRoomQuery(selection) {
