@@ -2,19 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export default class Result extends Component {
-  static propTypes = {
-
-  }
-
-  state = {
-
-  }
-
   getStyle(img) {
     return ({
-      'background-image': `url(${img})`,
-      'background-position': 'center',
-      'background-size': 'cover'
+      'backgroundImage': `url(${img})`,
+      'backgroundPosition': 'center',
+      'backgroundSize': 'cover'
     })
   }
 

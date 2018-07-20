@@ -27,16 +27,15 @@ function bodyData(body) {
 
 const TAIPEI = 'region=1'
 async function search591(queryString) {
-  // SEARCH TYPE HERE IF DOING NEAR A SUBWAY
   const searchQuery = `https://rent.591.com.tw/home/search/rsList?is_new_list=1&${TAIPEI}&${queryString}`
   const response = await axios.get(searchQuery)
   return response.data
 }
 
 exports.handler = async function(event, done, fail) {
-  const { near, price, rooms, roomType, lease, pageNum } = event.vars
+  const { near, price, rooms, roomType, lease, nextPage } = event.vars
   console.log('vars', event.vars)
-  const raw = await search591(formatQueryString({ near, roomType, price, lease, rooms, pageNum }))
+  const raw = await search591(formatQueryString({ near, roomType, price, lease, rooms, nextPage }))
   if (!raw) return fail('No response for query', 400)
   const { data } = raw.data
   if (!data) return fail('No data in response', 400)
@@ -94,8 +93,8 @@ function formatQueryString(params) {
   // ^ can only specify number of rooms if searching for a whole apartment... obviously!
   const near = getNear(params.near)
   const price = params.price && 'rentprice=' + getBudget(params.price)
-  // TODO: const pageNum = params.pageNum && 'firstRow=' + getPageNum(params.pageNum)
-  return [room, price, leaseType, numOfRooms, near].filter(el => el).join('&')
+  const nextPage = params.nextPage && 'firstRow=' + mapPageToRows(params.nextPage)
+  return [room, price, leaseType, numOfRooms, near, nextPage].filter(el => el).join('&')
 }
 
 function getRoomNumber(selection) {
@@ -103,8 +102,8 @@ function getRoomNumber(selection) {
   // ^ 591 currently just uses 0 - 5 to indicate the number of rooms so we can re-use their params
 }
 
-function getPageNum(pageNum) {
-  return Number(pageNum) * 30
+function mapPageToRows(nextPage) {
+  return Number(nextPage) * 30
 }
 
 function getRoomQuery(selection) {
