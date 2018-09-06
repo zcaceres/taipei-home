@@ -12,3 +12,11 @@
 .App {
 
 }
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: #000;
+}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ResultsGrid from './ResultsGrid';
 import PropTypes from 'prop-types';
 import Search from './Search';
+import Loading from './Loading';
 import axios from 'axios';
 import '../styles/Body.css';
 
@@ -9,11 +10,13 @@ export default class Body extends Component {
   state = {
     results: [],
     loading: false,
+    searchLoading: false,
     nextPage: null,
     roomType: null,
     nearValue: null,
     nearType: null,
-    price: null
+    price: null,
+    hasSearchedAtLeastOnce: false
   }
 
   componentDidMount() {
@@ -55,7 +58,7 @@ export default class Body extends Component {
 
   // TODO: lease, rooms
   requestSearchResults = ({ near, nearType, roomType, price, lease = null, rooms = null }) => {
-    this.setState({ loading: true })
+    this.setState({ loading: true, searchLoading: true })
     axios.post('https://exec.clay.run/zachcaceres/taiwan-home', {
       near,
       nearType,
@@ -64,17 +67,28 @@ export default class Body extends Component {
     })
       .then(res => {
         const { data } = res;
-        this.setState({ loading: false, results: data.results, nextPage: 1 })
+        this.setState({
+          loading: false,
+          searchLoading: false,
+          results: data.results,
+          nextPage: 1,
+          hasSearchedAtLeastOnce: true
+        })
         // After the first request, we begin to count pages. First request === page 0
       })
       .catch(err => {
-        this.setState({ loading: false })
+        this.setState({
+          loading: false,
+          searchLoading: false,
+          hasSearchedAtLeastOnce: true
+        })
         console.error(err)
       })
   }
 
   fetchMore = () => {
     const { near, nearType, roomType, price, nextPage } = this.state
+    if (!roomType || !price) return; // Don't let people fetch more until search is defined
     this.setState({ loading: true })
     axios.post('https://exec.clay.run/zachcaceres/taiwan-home', {
       near,
@@ -95,15 +109,24 @@ export default class Body extends Component {
   }
 
   render() {
+    const { loading, hasSearchedAtLeastOnce } = this.state
     return (
       <div className="Body w-100 flex flex-column pt4 content-center">
         <div className="flex flex-column tc flex-wrap items-center pb1">
           <div className="body-header mb3">
             🏠 <span className="callout">Find the best apartments in Taipei</span> (without speaking Mandarin)
           </div>
-          <Search search={this.search} handleChange={this.handleSearchChange} {...this.state} />
+          {loading ?
+            <Loading />
+            :
+            <Search
+              search={this.search}
+              loading={loading}
+              handleChange={this.handleSearchChange}
+              {...this.state}
+            />}
         </div>
-        <ResultsGrid results={this.state.results} />
+        {hasSearchedAtLeastOnce && <ResultsGrid results={this.state.results} />}
       </div>
     )
   }

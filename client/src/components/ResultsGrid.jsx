@@ -6,12 +6,15 @@ import '../styles/ResultsGrid.css';
 
 export default class ResultsGrid extends Component {
   static propTypes = {
-    results: PropTypes.array.isRequired
+    results: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired
   }
 
   render() {
-    return (<div className="ResultsGrid w-100 mt4 flex flex-wrap">
-      { Boolean(this.props.results.length) ? this.props.results.map((result, i) => (
+    const { results, loading } = this.props
+    if (loading) return null
+    return (<div className="ResultsGrid w-100 mt4 flex flex-wrap justify-center">
+      { Boolean(results.length) ? results.map((result, i) => (
         <Result
           key={i}
           price={result.price}

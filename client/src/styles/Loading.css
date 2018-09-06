@@ -1,0 +1,29 @@
+.Loading {
+  height: 181px;
+  width: 103px;
+}
+
+.Loading .Loading-image {
+  -webkit-animation: pulse 2s infinite ease-out;
+}
+
+.Loading .Loading-text {
+  font-family: 'Montserrat';
+  font-size: 16px;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+}
