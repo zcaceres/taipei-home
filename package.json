@@ -1,24 +1,21 @@
 {
   "name": "taiwan-home",
-  "version": "1.0.0",
-  "description": "``` near: {   for subway line ...     type: 'line',     value: ['red', 'blue', 'yellow', 'green', 'brown']",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/zcaceres/taiwan-home.git"
-  },
-  "author": "Zachary Caceres",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/zcaceres/taiwan-home/issues"
-  },
-  "homepage": "https://github.com/zcaceres/taiwan-home#readme",
+  "version": "0.1.0",
+  "description": "Apartment Hunt like a Local ... Without Speaking Mandarin",
+  "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "jsdom": "^11.11.0",
-    "lodash": "^4.17.10"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-select": "^2.0.0-beta.7"
+  },
+  "devDependencies": {
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }
